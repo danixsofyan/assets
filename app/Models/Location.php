@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     protected $fillable = ['branch_name', 'building_name', 'floor'];
+
+    public function getFullLocationAttribute()
+    {
+        return "{$this->branch_name} - {$this->building_name} (Lantai {$this->floor})";
+    }
 }

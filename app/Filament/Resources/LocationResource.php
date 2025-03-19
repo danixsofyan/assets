@@ -24,6 +24,10 @@ class LocationResource extends Resource
 
     protected static ?string $navigationGroup = 'Configuration';
 
+    protected static ?string $navigationLabel = 'Lokasi';
+
+    protected static ?string $breadcrumb = 'Lokasi';
+
     public static function form(Form $form): Form
     {
         return $form

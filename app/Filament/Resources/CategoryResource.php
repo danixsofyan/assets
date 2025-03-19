@@ -24,6 +24,8 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationGroup = 'Configuration';
 
+    protected static ?string $navigationLabel = 'Kategori';
+
     protected static ?int $navigationSort = 0;
 
     public static function form(Form $form): Form
@@ -40,7 +42,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('name')->label('Nama')->searchable(),
             ])
             ->filters([
                 //

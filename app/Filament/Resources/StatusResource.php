@@ -24,6 +24,8 @@ class StatusResource extends Resource
 
     protected static ?string $navigationGroup = 'Configuration';
 
+    protected static ?string $navigationLabel = 'Status';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -38,7 +40,7 @@ class StatusResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->searchable(),
+                TextColumn::make('name')->label('Nama')->searchable(),
             ])
             ->filters([
                 //
