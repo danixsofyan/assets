@@ -38,7 +38,7 @@ class ItemMovementResource extends Resource
             ->schema([
                 Card::make()->schema([
                     Select::make('item_id')
-                        ->label('Item')
+                        ->label('Nama asset')
                         ->options(Item::all()->pluck('name', 'id'))
                         ->searchable()
                         ->required()
@@ -52,7 +52,7 @@ class ItemMovementResource extends Resource
                         ->label('From Location ID')
                         ->hidden(),
                     TextInput::make('from_location')
-                        ->label('From Location')
+                        ->label('Asal lokasi')
                         ->default('N/A')
                         ->disabled()
                         ->afterStateHydrated(
@@ -62,7 +62,7 @@ class ItemMovementResource extends Resource
                                 : 'N/A')
                         ),
                     Select::make('to_location_id')
-                        ->label('To Location')
+                        ->label('Tujuan lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
                                 $location->id => "{$location->branch_name} - {$location->building_name} (Lantai {$location->floor})"
@@ -78,15 +78,15 @@ class ItemMovementResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('user.name')
-                    ->label('Request by')
+                    ->label('PIC')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('item.name')
-                    ->label('Item')
+                    ->label('Nama asset')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('fromLocation.branch_name')
-                    ->label('From Location')
+                    ->label('Asal lokasi')
                     ->sortable()
                     ->searchable()
                     ->formatStateUsing(
@@ -94,7 +94,7 @@ class ItemMovementResource extends Resource
                         "{$record->fromLocation?->branch_name} - {$record->fromLocation?->building_name} (Lantai {$record->fromLocation?->floor})"
                     ),
                 TextColumn::make('toLocation.branch_name')
-                    ->label('To Location')
+                    ->label('Tujuan lokasi')
                     ->sortable()
                     ->searchable()
                     ->formatStateUsing(
@@ -102,7 +102,7 @@ class ItemMovementResource extends Resource
                         "{$record->toLocation?->branch_name} - {$record->toLocation?->building_name} (Lantai {$record->toLocation?->floor})"
                     ),
                 TextColumn::make('moved_at')
-                    ->label('Move at')
+                    ->label('Tanggal mutasi')
                     ->sortable(),
 
             ])

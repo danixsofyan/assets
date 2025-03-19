@@ -48,7 +48,7 @@ class ItemResource extends Resource
                 Card::make()->schema([
                     TextInput::make('name')->required(),
                     Select::make('category_id')
-                        ->label('Category')
+                        ->label('Kategori')
                         ->options(Category::all()->pluck('name', 'id'))
                         ->searchable()
                         ->required(),
@@ -58,7 +58,7 @@ class ItemResource extends Resource
                         ->searchable()
                         ->required(),
                     Select::make('location_id')
-                        ->label('Location')
+                        ->label('Lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
                                 $location->id => "{$location->branch_name} - {$location->building_name} (Lantai {$location->floor})"
