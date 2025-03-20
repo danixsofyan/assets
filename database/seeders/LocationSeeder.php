@@ -43,7 +43,7 @@ class LocationSeeder extends Seeder
 
         Location::create([
             'branch_name'   => 'Surabaya',
-            'building_name' => 'Towe',
+            'building_name' => 'Tower',
             'floor'         => 2,
             'room'          => 'Divisi Finance',
             'created_at'    => now(),
