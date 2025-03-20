@@ -30,7 +30,7 @@ class ItemSeeder extends Seeder
             'category_id'   => 2,
             'status_id'     => 2,
             'location_id'   => 2,
-            'description'   => 'Good',
+            'description'   => 'LCD Rusak',
             'photo'         => 'belum ada foto',
             'created_at'    => now(),
             'updated_at'    => now()
@@ -41,7 +41,7 @@ class ItemSeeder extends Seeder
             'category_id'   => 3,
             'status_id'     => 3,
             'location_id'   => 3,
-            'description'   => 'Good',
+            'description'   => 'Baud ilang',
             'photo'         => 'belum ada foto',
             'created_at'    => now(),
             'updated_at'    => now()
@@ -52,7 +52,7 @@ class ItemSeeder extends Seeder
             'category_id'   => 4,
             'status_id'     => 1,
             'location_id'   => 4,
-            'description'   => 'Good',
+            'description'   => 'Lecet dikit',
             'photo'         => 'belum ada foto',
             'created_at'    => now(),
             'updated_at'    => now()
