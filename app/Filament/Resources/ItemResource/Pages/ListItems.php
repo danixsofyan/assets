@@ -23,7 +23,7 @@ class ListItems extends ListRecords
     {
         return [
             'all' => Tab::make('All'),
-            '1' => Tab::make('Bagus')
+            '1' => Tab::make('Baik')
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status_id', 1)),
             '2' => Tab::make('Rusak')
                 ->modifyQueryUsing(fn(Builder $query) => $query->where('status_id', 2)),

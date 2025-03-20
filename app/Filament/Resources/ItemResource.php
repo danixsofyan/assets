@@ -61,7 +61,7 @@ class ItemResource extends Resource
                         ->label('Lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
-                                $location->id => "{$location->branch_name} - {$location->building_name} (Lantai {$location->floor})"
+                                $location->id => "{$location->branch_name} - {$location->building_name} - Lantai {$location->floor} - {$location->room}"
                             ])
                         )
                         ->searchable(),
@@ -90,7 +90,7 @@ class ItemResource extends Resource
                     ->searchable()
                     ->formatStateUsing(
                         fn($record) =>
-                        "{$record->location->branch_name} - {$record->location->building_name} (Lantai {$record->location->floor})"
+                        "{$record->location->branch_name} - {$record->location->building_name} - LT {$record->location->floor} - {$record->location->room}"
                     ),
                 TextColumn::make('description')->label('Deskrpsi'),
                 ImageColumn::make('photo')->label('Photo')
@@ -99,7 +99,7 @@ class ItemResource extends Resource
                 SelectFilter::make('location_id')
                     ->label('Location')
                     ->options(fn() => Location::all()->mapWithKeys(fn($location) => [
-                        $location->id => "{$location->branch_name} - {$location->building_name} (Lantai {$location->floor})"
+                        $location->id => "{$location->branch_name} - {$location->building_name} - LT {$location->floor} - {$location->room}"
                     ])->toArray())
                     ->searchable(),
                 Filter::make('created_at')

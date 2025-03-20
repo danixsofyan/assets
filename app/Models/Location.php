@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    protected $fillable = ['branch_name', 'building_name', 'floor'];
+    protected $fillable = ['branch_name', 'building_name', 'floor', 'room'];
 
     public function getFullLocationAttribute()
     {

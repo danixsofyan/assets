@@ -36,6 +36,7 @@ class LocationResource extends Resource
                     TextInput::make('branch_name')->required()->label('Cabang'),
                     TextInput::make('building_name')->required()->label('Gedung'),
                     TextInput::make('floor')->required()->label('Lantai'),
+                    TextInput::make('room')->required()->label('Ruangan'),
                 ])
             ]);
     }
@@ -47,6 +48,7 @@ class LocationResource extends Resource
                 TextColumn::make('branch_name')->label('Cabang')->searchable(),
                 TextColumn::make('building_name')->label('Gedung')->searchable(),
                 TextColumn::make('floor')->label('Lantai')->searchable(),
+                TextColumn::make('room')->label('Ruangan')->searchable(),
             ])
             ->filters([
                 //

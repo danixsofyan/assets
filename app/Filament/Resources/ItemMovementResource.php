@@ -58,14 +58,14 @@ class ItemMovementResource extends Resource
                         ->afterStateHydrated(
                             fn($state, callable $set, $record) =>
                             $set('from_location', $record && $record->fromLocation
-                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} (Lantai {$record->fromLocation->floor})"
+                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} - Lantai {$record->fromLocation->floor} - {$record->fromLocation->room}"
                                 : 'N/A')
                         ),
                     Select::make('to_location_id')
                         ->label('Tujuan lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
-                                $location->id => "{$location->branch_name} - {$location->building_name} (Lantai {$location->floor})"
+                                $location->id => "{$location->branch_name} - {$location->building_name} - Lantai {$location->floor} - {$location->room}"
                             ])
                         )
                         ->searchable(),
@@ -91,7 +91,7 @@ class ItemMovementResource extends Resource
                     ->searchable()
                     ->formatStateUsing(
                         fn($record) =>
-                        "{$record->fromLocation?->branch_name} - {$record->fromLocation?->building_name} (Lantai {$record->fromLocation?->floor})"
+                        "{$record->fromLocation?->branch_name} - {$record->fromLocation?->building_name} - LT {$record->fromLocation?->floor} - {$record->fromLocation?->room}"
                     ),
                 TextColumn::make('toLocation.branch_name')
                     ->label('Tujuan lokasi')
@@ -99,7 +99,7 @@ class ItemMovementResource extends Resource
                     ->searchable()
                     ->formatStateUsing(
                         fn($record) =>
-                        "{$record->toLocation?->branch_name} - {$record->toLocation?->building_name} (Lantai {$record->toLocation?->floor})"
+                        "{$record->toLocation?->branch_name} - {$record->toLocation?->building_name} - LT {$record->toLocation?->floor} - {$record->toLocation?->room}"
                     ),
                 TextColumn::make('moved_at')
                     ->label('Tanggal mutasi')

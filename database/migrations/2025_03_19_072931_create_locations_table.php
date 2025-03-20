@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('branch_name');
             $table->string('building_name');
             $table->integer('floor');
+            $table->string('room');
             $table->timestamps();
         });
     }
