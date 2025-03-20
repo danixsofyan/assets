@@ -61,7 +61,7 @@ class ItemResource extends Resource
                         ->label('Lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
-                                $location->id => "{$location->branch_name} - {$location->building_name} - Lantai {$location->floor} - {$location->room}"
+                                $location->id => "{$location->branch_name} - {$location->building_name} - LT {$location->floor} - {$location->room}"
                             ])
                         )
                         ->searchable(),

@@ -58,14 +58,14 @@ class ItemMovementResource extends Resource
                         ->afterStateHydrated(
                             fn($state, callable $set, $record) =>
                             $set('from_location', $record && $record->fromLocation
-                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} - Lantai {$record->fromLocation->floor} - {$record->fromLocation->room}"
+                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} - LT {$record->fromLocation->floor} - {$record->fromLocation->room}"
                                 : 'N/A')
                         ),
                     Select::make('to_location_id')
                         ->label('Tujuan lokasi')
                         ->options(
                             Location::all()->mapWithKeys(fn($location) => [
-                                $location->id => "{$location->branch_name} - {$location->building_name} - Lantai {$location->floor} - {$location->room}"
+                                $location->id => "{$location->branch_name} - {$location->building_name} - LT {$location->floor} - {$location->room}"
                             ])
                         )
                         ->searchable(),

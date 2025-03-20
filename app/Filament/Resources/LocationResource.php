@@ -35,7 +35,7 @@ class LocationResource extends Resource
                 Card::make()->schema([
                     TextInput::make('branch_name')->required()->label('Cabang'),
                     TextInput::make('building_name')->required()->label('Gedung'),
-                    TextInput::make('floor')->required()->label('Lantai'),
+                    TextInput::make('floor')->required()->label('LT'),
                     TextInput::make('room')->required()->label('Ruangan'),
                 ])
             ]);
@@ -47,7 +47,7 @@ class LocationResource extends Resource
             ->columns([
                 TextColumn::make('branch_name')->label('Cabang')->searchable(),
                 TextColumn::make('building_name')->label('Gedung')->searchable(),
-                TextColumn::make('floor')->label('Lantai')->searchable(),
+                TextColumn::make('floor')->label('LT')->searchable(),
                 TextColumn::make('room')->label('Ruangan')->searchable(),
             ])
             ->filters([

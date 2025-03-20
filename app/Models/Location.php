@@ -10,6 +10,6 @@ class Location extends Model
 
     public function getFullLocationAttribute()
     {
-        return "{$this->branch_name} - {$this->building_name} (Lantai {$this->floor})";
+        return "{$this->branch_name} - {$this->building_name} (LT {$this->floor})";
     }
 }
