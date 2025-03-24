@@ -7,6 +7,8 @@ use App\Models\Item;
 use Carbon\Carbon;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\ValidationException;
+use Filament\Notifications\Notification;
 
 class CreateItemMovement extends CreateRecord
 {
@@ -32,6 +34,31 @@ class CreateItemMovement extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
+        // Pastikan kedua nilai ada
+        if (!isset($data['from_location_id'], $data['to_location_id'])) {
+            Notification::make()
+                ->title('Gagal!')
+                ->body('Lokasi asal dan tujuan harus diisi.')
+                ->danger()
+                ->send();
+
+            throw ValidationException::withMessages([
+                'to_location_id' => 'Lokasi asal dan tujuan harus diisi.',
+            ]);
+        }
+
+        if ((int) $data['from_location_id'] === (int) $data['to_location_id']) {
+            Notification::make()
+                ->title('Validasi Gagal!')
+                ->body('Lokasi tujuan tidak boleh sama dengan lokasi asal.')
+                ->danger()
+                ->send();
+
+            throw ValidationException::withMessages([
+                'to_location_id' => 'Lokasi tujuan tidak boleh sama dengan lokasi asal.',
+            ]);
+        }
+
         $record = parent::handleRecordCreation($data);
 
         Item::where('id', $record->item_id)->update([

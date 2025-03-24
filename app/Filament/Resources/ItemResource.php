@@ -24,6 +24,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Database\Eloquent\Builder;
@@ -64,7 +65,8 @@ class ItemResource extends Resource
                                 $location->id => "{$location->branch_name} - {$location->building_name} - LT {$location->floor} - {$location->room}"
                             ])
                         )
-                        ->searchable(),
+                        ->searchable()
+                        ->disabled(fn($record) => $record !== null),
                     MarkdownEditor::make('description')->label('Description')->required(),
                     FileUpload::make('photo')->required()->image(),
                 ])
@@ -96,6 +98,7 @@ class ItemResource extends Resource
                 ImageColumn::make('photo')->label('Photo')
             ])
             ->filters([
+                // TrashedFilter::make()->default(true),
                 SelectFilter::make('location_id')
                     ->label('Location')
                     ->options(fn() => Location::all()->mapWithKeys(fn($location) => [
@@ -121,10 +124,14 @@ class ItemResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                // Tables\Actions\RestoreAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    // Tables\Actions\ForceDeleteBulkAction::make(),
+                    // Tables\Actions\RestoreBulkAction::make(),
                 ]),
             ]);
     }

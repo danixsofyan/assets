@@ -28,7 +28,7 @@ class ItemMovementResource extends Resource
 
     protected static ?string $navigationGroup = 'Asset Management';
 
-    protected static ?string $navigationLabel = 'Mutasi Asset';
+    protected static ?string $navigationLabel = 'Asset Mutasi';
 
     protected static ?int $navigationSort = 2;
 
@@ -58,7 +58,7 @@ class ItemMovementResource extends Resource
                         ->afterStateHydrated(
                             fn($state, callable $set, $record) =>
                             $set('from_location', $record && $record->fromLocation
-                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} - LT {$record->fromLocation->floor} - {$record->fromLocation->room}"
+                                ? "{$record->fromLocation->branch_name} - {$record->fromLocation->building_name} - LTa {$record->fromLocation->floor} - {$record->fromLocation->room}"
                                 : 'N/A')
                         ),
                     Select::make('to_location_id')
@@ -77,12 +77,12 @@ class ItemMovementResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')
-                    ->label('PIC')
-                    ->sortable()
-                    ->searchable(),
                 TextColumn::make('item.name')
                     ->label('Nama asset')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('item.category.name')
+                    ->label('Kategori')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('fromLocation.branch_name')
@@ -104,6 +104,10 @@ class ItemMovementResource extends Resource
                 TextColumn::make('moved_at')
                     ->label('Tanggal mutasi')
                     ->sortable(),
+                TextColumn::make('user.name')
+                    ->label('PIC')
+                    ->sortable()
+                    ->searchable(),
 
             ])
 
