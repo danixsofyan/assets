@@ -14,6 +14,6 @@ class Category extends Model
     }
     public function itemDelete()
     {
-        return $this->hasMany(itemDelete::class);
+        return $this->hasMany(ItemDelete::class);
     }
 }

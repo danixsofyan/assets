@@ -18,7 +18,7 @@ class Item extends Model
         parent::boot();
 
         static::deleting(function ($item) {
-            itemDelete::create([
+            ItemDelete::create([
                 'item_id' => $item->id,
                 'user_id' => Auth::id(),
                 'from_location_id' => $item->location_id,
@@ -47,6 +47,6 @@ class Item extends Model
 
     public function itemDelete()
     {
-        return $this->hasMany(itemDelete::class);
+        return $this->hasMany(ItemDelete::class);
     }
 }
